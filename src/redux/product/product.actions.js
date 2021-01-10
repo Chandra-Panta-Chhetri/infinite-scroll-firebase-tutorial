@@ -6,7 +6,7 @@ export const startInitialProductsFetch = () => ({
 
 export const initialProductsFetchFail = (errorMsg) => ({
   type: PRODUCT_ACTION_TYPES.INITIAL_PRODUCTS_FETCH_FAIL,
-  payload: { errorTitle: "Products Fetching Failed", errorMsg }
+  payload: errorMsg
 });
 
 export const initialProductsFetchSuccess = (products, lastVisibleDoc) => ({
@@ -20,15 +20,12 @@ export const startLoadingMoreProducts = () => ({
 
 export const loadingMoreProductsFail = (errorMsg) => ({
   type: PRODUCT_ACTION_TYPES.LOADING_MORE_PRODUCTS_FAIL,
-  payload: { errorTitle: "Fetching More Products Failed", errorMsg }
+  payload: errorMsg
 });
 
-export const loadingMoreProductsSuccess = (
-  updatedProducts,
-  lastVisibleDoc
-) => ({
+export const loadingMoreProductsSuccess = (newProducts, lastVisibleDoc) => ({
   type: PRODUCT_ACTION_TYPES.LOADING_MORE_PRODUCTS_SUCCESS,
-  payload: { updatedProducts, lastVisibleDoc }
+  payload: { newProducts, lastVisibleDoc }
 });
 
 export const noMoreProductsToLoad = () => ({

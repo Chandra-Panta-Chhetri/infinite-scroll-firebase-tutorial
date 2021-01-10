@@ -29,20 +29,20 @@ const productReducer = (prevState = INITIAL_STATE, action) => {
     case PRODUCT_ACTION_TYPES.INITIAL_PRODUCTS_FETCH_SUCCESS:
       return {
         ...prevState,
-        ...action.payload,
+        products: action.payload.products,
+        lastVisibleDoc: action.payload.lastVisibleDoc,
         isFetchingProducts: false
       };
     case PRODUCT_ACTION_TYPES.START_LOADING_MORE_PRODUCTS:
       return {
         ...prevState,
-        isFetchingProducts: true,
-        productData: {}
+        isFetchingProducts: true
       };
     case PRODUCT_ACTION_TYPES.LOADING_MORE_PRODUCTS_SUCCESS:
       return {
         ...prevState,
         isFetchingProducts: false,
-        products: action.payload.updatedProducts,
+        products: [...prevState.products, ...action.payload.newProducts],
         lastVisibleDoc: action.payload.lastVisibleDoc
       };
     default:

@@ -13,8 +13,7 @@ import {
 } from "../../firebase-utils/firebase.product_utils";
 import {
   selectProductsPerPage,
-  selectLastVisibleDoc,
-  selectProducts
+  selectLastVisibleDoc
 } from "./product.selectors";
 
 function* fetchProducts() {
@@ -43,9 +42,7 @@ function* fetchMoreProducts() {
     if (!newProducts.length) {
       return yield put(noMoreProductsToLoad());
     }
-    const prevProducts = yield select(selectProducts);
-    const updatedProducts = [...prevProducts, ...newProducts];
-    yield put(loadingMoreProductsSuccess(updatedProducts, lastVisibleDoc));
+    yield put(loadingMoreProductsSuccess(newProducts, lastVisibleDoc));
   } catch (err) {
     yield put(
       loadingMoreProductsFail("There was a problem loading more products.")

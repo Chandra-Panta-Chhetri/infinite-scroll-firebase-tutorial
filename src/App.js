@@ -32,12 +32,12 @@ function App({
 
   return (
     <section>
-      <h1 class="title">Products</h1>
-      <div class="product-container">
+      <h1 className="title">Products</h1>
+      <div className="product-container">
         {(products || []).map((product, index) => (
           <div
             key={product.id}
-            class="product"
+            className="product"
             ref={
               index + 1 === products.length
                 ? fetchMoreOnIntersection
